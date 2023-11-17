@@ -1,0 +1,12 @@
+
+enqueue superman
+enqueue spiderman
+enqueue batman
+dequeue 
+dequeue 
+enqueue ironman
+enqueue thor
+enqueue hulk
+dequeue 
+dequeue 
+enqueue elmo
