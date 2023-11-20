@@ -2,6 +2,7 @@ package umm2101;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.util.Scanner;
@@ -12,10 +13,80 @@ public class Main {
    /**
     * @param args
     */
-   public static void main(String[] args) {     
-      queueStuff3();
+   public static void main(String[] args) { 
+      BST<Integer> myTree = buildTreeFromTextFile(); 
+      System.out.println(myTree.toString()); 
+      // System.out.println(count(example())); 
+      // queueStuff3();
       // String filename = args[0];//Pass the function a full filepath
       // beginParsing(filename);//call the parsing function
+   }
+
+   public static int count(String theString) {
+      if (theString.equals("")) {
+         return 0;
+      } else {
+         return 1 + count(theString.substring(1));
+      }
+   }
+
+   public static BST<Integer> buildTreeFromTextFile() {
+      BST<Integer> bst = new BST<>();
+      try {
+         Scanner sc = new Scanner(new FileReader("bst.txt"));
+         while(sc.hasNext()) {
+            String cmd = sc.next();
+            String thing;
+            switch(cmd) {
+              case "insert" :
+                 thing = sc.next();
+                 bst.insert(Integer.parseInt(thing));
+              break;
+              case "break" :
+              break;
+              default ://Found an unrecognized command
+                 System.out.println("Unrecognized input "+cmd);
+              break;
+            }
+         }
+         sc.close();
+       } catch (Exception e) {
+         e.printStackTrace();
+       }
+       return bst;
+   }
+
+   public static void buildTreeFromTextInput() {
+      Scanner sc = new Scanner(new InputStreamReader(System.in));
+      BST<Integer> bst = new BST<>();
+      while(sc.hasNext()) {
+            String cmd = sc.next();
+            String thing;
+            switch(cmd) {
+              case "insert" :
+                 thing = sc.next();
+                 bst.insert(Integer.parseInt(thing));
+                 System.out.println(bst);
+              break;
+              case "break" :
+                  //Closing BufferedWriter Stream
+                  System.exit(0);
+                  sc.close();
+              break;
+              default ://Found an unrecognized command
+                 System.out.println("Unrecognized input "+cmd);
+              break;
+            }
+         }
+         sc.close();
+   }
+   
+   public static String example() {
+      Scanner input = new Scanner(new InputStreamReader(System.in));
+      String thingToEcho = input.next();
+      System.out.println(thingToEcho);
+      input.close();
+      return thingToEcho;
    }
 
    public static void queueStuff3() {

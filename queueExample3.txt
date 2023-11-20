@@ -10,3 +10,9 @@ enqueue hulk
 dequeue 
 dequeue 
 enqueue elmo
+enqueue kk
+enqueue Linnea
+enqueue Jaden
+dequeue 
+dequeue 
+dequeue 
